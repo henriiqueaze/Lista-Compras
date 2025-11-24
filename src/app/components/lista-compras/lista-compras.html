@@ -1,0 +1,40 @@
+<div class="containder">
+    <div class="pesquisa">
+        <h1>Lista de compras</h1>
+        <form #frm="ngForm" (ngSubmit)="adicionarItem()">
+            <input type="text" placeholder="Digite o nome do item" name="nomeItem" [(ngModel)]="nomeItem">
+            <button type="submit">Adicionar</button>
+            <button type="button" (click)="limparLista()">Limpar lista</button>
+        </form>
+    </div>
+
+    <div class="itens">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Item</th>
+                    <th>✅</th>
+                    <th>🗑️</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (item of listaItens; track item.id) {
+                <tr>
+                    <td>{{item.id}}</td>
+                    <td><span [ngClass]="{ 'riscar-item' : item.feita }">{{item.nome}}</span></td>
+                    <td><input type="checkbox" (click)="riscarItem(item)" [checked]="item.feita"></td>
+                    <td><input type="checkbox" (click)="retirarItem(item)"></td>
+                </tr>
+                }
+                @empty {
+                <tr>
+                    <td class="nenhum-valor" colspan="4">Nenhum item adicionado</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
