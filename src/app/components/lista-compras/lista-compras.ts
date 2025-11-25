@@ -20,20 +20,20 @@ export class ListaCompras {
     } else {
       let novoItem = new Item();
       novoItem.id = this.listaItens.length + 1;
-      novoItem.nome = this.nomeItem;
+      novoItem.nome = this.nomeItem =
+        this.nomeItem.charAt(0).toUpperCase() + this.nomeItem.slice(1); //Capitaliza o nome do item
 
       this.listaItens.push(novoItem);
-
-      this.nomeItem = "";
+      this.nomeItem = '';
     }
   }
 
   retirarItem(item: Item) {
-    this.listaItens.forEach(itemValor => {
+    this.listaItens.forEach((itemValor) => {
       if (item == itemValor) {
         this.listaItens.splice(this.listaItens.indexOf(item), 1);
       }
-    })
+    });
   }
 
   limparLista() {
